@@ -1,0 +1,56 @@
+[
+  {
+    "id": "e81e47e5-7330-4f48-80e3-c69b4f78f589",
+    "data": [
+      {
+        "text": "Cuentame ",
+        "userDefined": false
+      },
+      {
+        "text": "un",
+        "alias": "time",
+        "meta": "@sys.time",
+        "userDefined": false
+      },
+      {
+        "text": " chiste",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "4faece6c-4388-4ffd-a598-181aebcb18d1",
+    "data": [
+      {
+        "text": "Hazme reir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "24222675-8e0d-44f0-9fec-c20314eaa075",
+    "data": [
+      {
+        "text": "Divierteme",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "7b03ba04-7f1c-4e4e-a500-51a20d528360",
+    "data": [
+      {
+        "text": "¿Te sabes algún chiste?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

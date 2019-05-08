@@ -1,0 +1,41 @@
+{
+  "id": "36355407-7734-49f6-ad85-abd56020617c",
+  "name": "IntentoChistes",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "afed7fd9-895a-482c-9042-5c920d6d311d",
+          "required": false,
+          "dataType": "@sys.time",
+          "name": "time",
+          "value": "$time",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "es",
+          "speech": [
+            "+Oye, ¿te suena Juan Bermúdez?\n-¡¡Qué va!! ¡Yo me sueno solo!",
+            "+¿Cómo se dice divorcio en ruso?\n-Chao Chochin",
+            "¿Cómo se ríe un ojo?\n¡¡OJOJOJOJOJOJOJOJO!!",
+            "+ ¿Es el Club de los Vagos?\n- Sí, es aquí. \n+ Pues que me entren, por favor."
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

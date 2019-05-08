@@ -1,0 +1,30 @@
+{
+  "id": "9828e421-2833-4808-92ef-0ee6e1691547",
+  "name": "IntentoEdad",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "es",
+          "speech": [
+            "Vaya preguntita.... soy muy peque todavía",
+            "Ups! Eres un curioso... me crearon hace poco"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

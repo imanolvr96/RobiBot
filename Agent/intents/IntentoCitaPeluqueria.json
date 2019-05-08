@@ -1,0 +1,77 @@
+{
+  "id": "14de6d45-bfce-445a-be9e-a5079a87f271",
+  "name": "IntentoCitaPeluqueria",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "fb176688-0477-4e09-ae9f-0d0b13abe60a",
+          "required": true,
+          "dataType": "@sys.date",
+          "name": "date",
+          "value": "$date",
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "Dime que día la quieres"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "id": "44863c3a-f0a5-4f55-a9aa-60fc5ae1cf94",
+          "required": true,
+          "dataType": "@sys.time",
+          "name": "time",
+          "value": "$time",
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿A qué hora te viene bien?"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "id": "c27708bb-d8b1-4568-b26d-ecf03ba45fdc",
+          "required": true,
+          "dataType": "@sys.phone-number",
+          "name": "phone-number",
+          "value": "$phone-number",
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "Me hace falta tu telefono"
+            }
+          ],
+          "isList": false
+        },
+        {
+          "id": "f18cf4cc-6b87-498f-b41b-d245d68866f2",
+          "dataType": "@sys.time",
+          "name": "time1",
+          "value": "$time1",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "es",
+          "speech": "No se estableció conexion con el servidor"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

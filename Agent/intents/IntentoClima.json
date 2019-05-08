@@ -1,0 +1,45 @@
+{
+  "id": "7db390fe-28be-48d4-ac06-227de7082a1a",
+  "name": "IntentoClima",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "getcontent",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "3cfc9d50-c66b-4b58-ab52-e029cfcd3102",
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "geo-city",
+          "value": "$geo-city",
+          "isList": false
+        },
+        {
+          "id": "511bad92-9a71-4e48-943f-ac4b0d094319",
+          "required": false,
+          "dataType": "@sys.date",
+          "name": "date",
+          "value": "$date",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "es",
+          "speech": "Tiempo de ciudad no disponible :("
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}
