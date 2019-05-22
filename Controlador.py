@@ -7,16 +7,26 @@
 # - * - codificación: utf-8 - * -
 
 #   --- IMPORTS    ------------------------------------------------------------
-import requests, os, pymysql, time
+import requests, os, pymysql, time, mysql
+import mysql.connector
+from mysql.connector import errorcode
 from flask import Flask, request, make_response, jsonify
 from datetime import datetime
 
 try:
     #   opens the database connection
-    conexion_db = pymysql.connect("localhost", "admin", "123456", "barberia_bd")
+    conexion_db = pymysql.connect("localhost", "root", "123456", "barberia_bd")
 
-except MySQL.Error as mysql_error:
-    print ("Error connecting to database: %s" % (str(mysql_error)))
+except mysql.connector.Error as err:
+
+    if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+        print("Something is wrong with your user name or password")
+
+    elif err.errno == errorcode.ER_BAD_DB_ERROR:
+        print("Database does not exist")
+
+    else:
+        conexion_db.close()
 
 #   --- MAKE DE APP WITH FLASK  -----------------------------------------------
 app = Flask(__name__)
@@ -156,8 +166,10 @@ def ComprobarHorario(horaCita):
         #   I close the cursor
         cursorComprobarHorario.close()
 
-    except MySQL.Error as mysql_error:
-        print ("Error executing query: %s" % (str(mysql_error)))
+    except mysql.connector.Error as err:
+        print("Error executing query")
+        print(err)
+
 
 #   --- MYSQL CONEXION  -------------------------------------------------------
 def MySQL(fecha, hora, telefono):
@@ -169,7 +181,7 @@ def MySQL(fecha, hora, telefono):
         #   I execute the query
         query = "INSERT INTO `cita` (`fecha`,`hora`,`telefono`) VALUES (%s,%s,%s)"
         insert_tuple = (fecha, hora, telefono)
-        result  = cursorMySQL.execute(query, insert_tuple)
+        cursorMySQL.execute(query, insert_tuple)
 
         #   I save the data in the database
         conexion_db.commit()
@@ -181,8 +193,9 @@ def MySQL(fecha, hora, telefono):
         #   I close the cursor
         cursorMySQL.close()
 
-    except MySQL.Error as mysql_error:
-        print ("Error executing insert query: %s" % (str(mysql_error)))
+    except mysql.connector.Error as err:
+        print("Error executing query:")
+        print(err)
 
 #   --- CHECK IF THERE IS ANY MACH  -------------------------------------------
 def ComprobarCita(fecha, hora):
@@ -205,8 +218,9 @@ def ComprobarCita(fecha, hora):
         #   I close the cursor
         cursorComprobarCita.close()
 
-    except MySQL.Error as mysql_error:
-        print ("Error executing query: %s" % (str(mysql_error)))
+    except mysql.connector.Error as err:
+        print("Error executing query")
+        print(err)
 
 #   --- CHEK CURRENT DATE AND TIME  -------------------------------------------
 def ComrobarFechaHoraActual(fecha, hora):
