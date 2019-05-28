@@ -1,5 +1,22 @@
-<ul>
-  <li *ngFor = "let fruit of fruits; let i = index">
-    {{i}} {{fruit}}
-  </li>
-</ul>
+<h3> Horarios </h3>
+
+<table>
+
+  <tr>
+    <th>ID</th>
+    <th>PLAZAS</th>
+    <th>HORAS</th>
+
+  </tr>
+
+  <tr *ngFor = "let horario of horarios">
+
+    <td>{{horario.id}}</td>
+    <td>{{horario.horas}}</td>
+    <td>{{horario.plazas}}</td>
+    
+  <td>
+
+  </tr>
+
+</table>

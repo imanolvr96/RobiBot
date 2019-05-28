@@ -1,21 +1,22 @@
 #------------------------------------------------------------------------------
 #               Created by: IMANOL VILLALBA
-#               On: 06/05/2019
+#               On: 28/05/2019
 #------------------------------------------------------------------------------
 
 #! / usr / bin / python3
 # - * - codificación: utf-8 - * -
 
 #   --- IMPORTS    ------------------------------------------------------------
-import requests, os, pymysql, time, mysql
+import requests, os, pymysql, time, mysql, json
 import mysql.connector
 from mysql.connector import errorcode
 from flask import Flask, request, make_response, jsonify
 from datetime import datetime
+from flask_cors import CORS
 
 try:
     #   opens the database connection
-    conexion_db = pymysql.connect("localhost", "root", "123456", "barberia_bd")
+    conexion_db = pymysql.connect("localhost", "admin", "123456", "barberia_bd")
 
 except mysql.connector.Error as err:
 
@@ -30,6 +31,7 @@ except mysql.connector.Error as err:
 
 #   --- MAKE DE APP WITH FLASK  -----------------------------------------------
 app = Flask(__name__)
+CORS(app)
 
 #   --- GETING AND SENDING RESPONSE TO DIALOGFLOW -----------------------------
 @app.route('/webhook', methods=['POST'])
@@ -76,7 +78,7 @@ def processRequest(req):
 
         #   I return speech
         return {
-                "speech": speech
+            "speech": speech
                 }
 
     #   If the intent is of the hairdresser
@@ -170,7 +172,6 @@ def ComprobarHorario(horaCita):
         print("Error executing query")
         print(err)
 
-
 #   --- MYSQL CONEXION  -------------------------------------------------------
 def MySQL(fecha, hora, telefono):
 
@@ -244,6 +245,92 @@ def ComrobarFechaHoraActual(fecha, hora):
     else:
         return False
 
+#   --- I SHOW THE HOURS IN ANGULAR  ----------------------------------------
+@app.route('/horarios',  methods=['get'])
+def SelectAngular():
+    
+    try:
+        #   I create the cursor
+        cursorSelectAngular = conexion_db.cursor()
+
+        #   I execute the query
+        cursorSelectAngular.execute("SELECT id_horario, CONVERT(horas, char), plazas FROM horario;")
+
+        #   Save all cursor results
+        resultado = cursorSelectAngular.fetchall()
+
+        #   Change tuple to list to can modify it
+        listaUno = list(resultado)
+
+        #   Return the list converted to json
+        return json.dumps(parsearListaHorario(listaUno))
+        
+        #   I close the cursor
+        cursorSelectAngular.close()
+
+    except mysql.connector.Error as err:
+        print("Error executing query")
+        print(err)
+
+#   --- PARSE THE LIST ------------------------------------------------------- 
+def parsearListaHorario(miLista):
+
+    #   I make new list and dictionary
+    diccionario = []
+    lista = []
+
+    #   I pass a list to a dictionary and create a list of dictionaries
+    for i in miLista:
+
+        diccionario = {'id': i[0], 'horas': i[1], 'plazas': i[2]}
+        
+        lista.append(diccionario)
+
+    return lista
+
+#   --- I SHOW THE RESERVATION IN ANGULAR  ------------------------------------
+@app.route('/citas',  methods=['get'])
+def SelectAngularCitas():
+
+    try:
+        #   I create the cursor
+        cursorSelectAngularCitas = conexion_db.cursor()
+
+        #   I execute the query
+        cursorSelectAngularCitas.execute("SELECT id_cita, CONVERT(fecha, char), CONVERT(hora, char), telefono FROM barberia_bd.cita;")
+
+        #   Save all cursor results
+        resultado = cursorSelectAngularCitas.fetchall()
+
+        #   Change tuple to list to can modify it
+        listaUno = list(resultado)
+
+        #   Return the list converted to json
+        return json.dumps(parsearListaCitas(listaUno))
+        
+        #   I close the cursor
+        cursorSelectAngularCitas.close()
+
+    except mysql.connector.Error as err:
+        print("Error executing query")
+        print(err)
+
+#   --- PARSE THE LIST --------------------------------------------------------
+def parsearListaCitas(miLista):
+
+    #   I make new list and dictionary
+    diccionario = []
+    lista = []
+
+    #   I pass a list to a dictionary and create a list of dictionaries
+    for i in miLista:
+
+        diccionario = {'id': i[0], 'fecha': i[1], 'hora': i[2], 'telefono': i[3]}
+        
+        lista.append(diccionario)
+
+    return lista
+    
 #   --- I MAKE THE MAIN -------------------------------------------------------
 if __name__ == '__main__':
 
