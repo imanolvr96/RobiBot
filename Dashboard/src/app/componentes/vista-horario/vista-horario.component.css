@@ -1,8 +1,56 @@
 th{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+td {
+    padding-left: 20px;
+    padding-right: 20px;
     text-align: center;
 }
 
-td {
-    padding: 5px 10px 3px 3px;
+table{
+    width: 100%;
+}
+
+tbody{
+    height:500px;
+    width: 100%;
+    display:block;
+    overflow:scroll;
+    padding: 10px;
+}
+
+#btnModificar{
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 10px 27px;
     text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 12px;
+}
+
+#btnCrear{
+    background-color: #4CAF50;
+    border: none;
+    color: black;
+    padding: 10px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+#btnBorrar{
+    background-color: #f44336;
+    border: none;
+    color: black;
+    padding: 10px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 12px;
 }

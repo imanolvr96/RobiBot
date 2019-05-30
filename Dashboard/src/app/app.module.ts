@@ -13,6 +13,7 @@ import { CitasComponent } from './componentes/citas/citas.component';
 import { HorarioComponent } from './componentes/horario/horario.component';
 import { VistaHorarioComponent } from './componentes/vista-horario/vista-horario.component';
 import { VistaCitasComponent } from './componentes/vista-citas/vista-citas.component';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { VistaCitasComponent } from './componentes/vista-citas/vista-citas.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]

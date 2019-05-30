@@ -11,14 +11,14 @@
   </tr>
 
   <tr *ngFor = "let cita of citas">
-
     <td>{{cita.id}}</td>
     <td>{{cita.fecha}}</td>
     <td>{{cita.hora}}</td>
     <td>{{cita.telefono}}</td>
-    
-  <td>
-
+    <td><button id="btnModificar">Modificar</button></td> 
+    <td><button id="btnBorrar" title="Borar cita" (click)="delete(cita)">Borar</button></td> 
   </tr>
 
 </table>
+
+<button id="btnCrear">Crear</button>

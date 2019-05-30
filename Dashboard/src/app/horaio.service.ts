@@ -14,7 +14,7 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class HorarioService {
 
-  private horarioUrl = 'http://3ff175ef.ngrok.io';  // URL to REST API
+  private horarioUrl = 'http://a4fa2f4a.ngrok.io';  // URL to REST API
   messageService: any;
 
   constructor(private http: HttpClient) { }
@@ -25,9 +25,17 @@ export class HorarioService {
     return this.http.get<Horario[]>(this.horarioUrl + '/horarios').pipe(catchError(this.handleError<Horario[]>('getHorarios', [])));
   }
 
+    /** DELETE RESERVATION */
+  deleteHour(horario: Horario | number) {
+
+    const id = typeof horario === 'number' ? horario : horario.id;
+    const url = `${this.horarioUrl}/deleteH/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
+
    private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
- 
+
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
  

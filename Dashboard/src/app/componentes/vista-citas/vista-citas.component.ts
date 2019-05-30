@@ -16,13 +16,16 @@ export class VistaCitasComponent implements OnInit {
   constructor(private citaService: CitaService) { }
 
   ngOnInit() {
+
     this.getCitas();
   }
 
   getCitas(): void {
 
     this.citaService.getCitas().subscribe(citas => this.citas = citas);
-
   }
 
+  delete(cita: Cita): void {
+    this.citaService.deleteReserv(cita).subscribe(success => {this.getCitas(); });
+  }
 }

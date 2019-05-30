@@ -14,19 +14,29 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class CitaService {
 
-  private citaUrl = 'http://3ff175ef.ngrok.io';  // URL to REST API
+  private citaUrl = 'http://a4fa2f4a.ngrok.io';  // URL to REST API
 
   messageService: any;
 
   constructor(private http: HttpClient) { }
 
-  /** GET users from the server */
+  /** GET  */
   getCitas(): Observable<Cita[]> {
 
     return this.http.get<Cita[]>(this.citaUrl + '/citas').pipe(catchError(this.handleError<Cita[]>('getCitas', [])));
   }
 
-   private handleError<T>(operation = 'operation', result?: T) {
+
+  /** DELETE RESERVATION */
+  deleteReserv(cita: Cita | number) {
+
+    const id = typeof cita === 'number' ? cita : cita.id;
+    const url = `${this.citaUrl}/deleteR/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
+
+
+    private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

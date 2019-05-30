@@ -262,12 +262,12 @@ def SelectAngular():
         #   Change tuple to list to can modify it
         listaUno = list(resultado)
 
-        #   Return the list converted to json
-        return json.dumps(parsearListaHorario(listaUno))
-        
         #   I close the cursor
         cursorSelectAngular.close()
 
+        #   Return the list converted to json
+        return json.dumps(parsearListaHorario(listaUno))
+        
     except mysql.connector.Error as err:
         print("Error executing query")
         print(err)
@@ -305,11 +305,11 @@ def SelectAngularCitas():
         #   Change tuple to list to can modify it
         listaUno = list(resultado)
 
-        #   Return the list converted to json
-        return json.dumps(parsearListaCitas(listaUno))
-        
         #   I close the cursor
         cursorSelectAngularCitas.close()
+        
+        #   Return the list converted to json
+        return json.dumps(parsearListaCitas(listaUno))
 
     except mysql.connector.Error as err:
         print("Error executing query")
@@ -330,7 +330,61 @@ def parsearListaCitas(miLista):
         lista.append(diccionario)
 
     return lista
-    
+
+#   --- I DELETE RESERVATION FROM ANGULAR  ------------------------------------
+@app.route('/deleteR/<id>',  methods=['delete'])
+def DeleteFromAngular(id):
+
+    try:
+        #   I create the cursor
+        cursorDeleteAngular = conexion_db.cursor()
+
+        #   I execute the query
+        cursorDeleteAngular.execute("DELETE FROM cita WHERE id_cita = %s", id)
+
+        #   I make the commit
+        conexion_db.commit()
+
+        #   I show the information messages
+        print("Registro eliminado exitosamente en la tabla cita")
+        print(cursorDeleteAngular.rowcount, "registro eliminado.")
+
+        #   I close the cursor
+        cursorDeleteAngular.close()
+        
+    except mysql.connector.Error as err:
+        print("Error executing query")
+        print(err)
+
+    return jsonify('User deleted successfully!')
+
+#   --- I DELETE HOUR FROM ANGULAR  ------------------------------------
+@app.route('/deleteH/<id>',  methods=['delete'])
+def DeleteFromHourAngular(id):
+
+    try:
+        #   I create the cursor
+        cursorDeleteHourAngular = conexion_db.cursor()
+
+        #   I execute the query
+        cursorDeleteHourAngular.execute("DELETE FROM horario WHERE id_horario = %s", id)
+
+        #   I make the commit
+        conexion_db.commit()
+
+        #   I show the information messages
+        print("Registro eliminado exitosamente en la tabla horario")
+        print(cursorDeleteHourAngular.rowcount, "registro eliminado.")
+
+        #   I close the cursor
+        cursorDeleteHourAngular.close()
+        
+    except mysql.connector.Error as err:
+        print("Error executing query")
+        print(err)
+
+    return jsonify('User deleted successfully!')
+
 #   --- I MAKE THE MAIN -------------------------------------------------------
 if __name__ == '__main__':
 

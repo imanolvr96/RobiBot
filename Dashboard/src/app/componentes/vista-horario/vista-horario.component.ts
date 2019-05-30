@@ -23,8 +23,10 @@ export class VistaHorarioComponent implements OnInit {
   getHorarios(): void {
 
     this.horarioService.getHorarios().subscribe(horarios => this.horarios = horarios);
+  }
 
-
+  delete(horaio: Horario): void {
+    this.horarioService.deleteHour(horaio).subscribe(success => {this.getHorarios(); });
   }
 
 }
