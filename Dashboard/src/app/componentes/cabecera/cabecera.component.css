@@ -1,8 +1,0 @@
-.navbar-brand{
-    
-    padding: 0%;
-}
-
-a:not([href]):not([tabindex]) {
-    color: white;
-}

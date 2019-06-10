@@ -1,0 +1,21 @@
+<h3> Citas </h3>
+
+<table>
+
+  <tr>
+    <th>ID</th>
+    <th>FECHA</th>
+    <th>HORA</th>
+    <th>TELEFONO</th>
+
+  </tr>
+
+  <tr *ngFor = "let cita of citas">
+    <td>{{cita.id}}</td>
+    <td>{{cita.fecha}}</td>
+    <td>{{cita.hora}}</td>
+    <td>{{cita.telefono}}</td>
+    <td><button id="btnBorrar" title="Borar cita" (click)="delete(cita)">Borar</button></td> 
+  </tr>
+
+</table>

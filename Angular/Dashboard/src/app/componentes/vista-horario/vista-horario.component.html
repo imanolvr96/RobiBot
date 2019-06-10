@@ -1,0 +1,18 @@
+<h3> Horarios </h3>
+
+<table height="100">
+
+  <tr>
+    <th>ID</th>
+    <th>HORAS</th>
+    <th>PLAZAS</th>
+  </tr>
+
+  <tr *ngFor = "let horario of horarios">
+    <td>{{horario.id}}</td>
+    <td>{{horario.horas}}</td>
+    <td>{{horario.plazas}}</td>
+    <td><button id="btnBorrar" title="Borar horar" (click)="delete(horario)">Borar</button></td>      
+  </tr>
+
+</table>

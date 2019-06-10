@@ -45,4 +45,4 @@ COMMIT;
 #	---	CREACION DE CONSULTAS ----------------------------------
 select * FROM horario;
 
-select fecha, hora FROM cita;
+select * FROM cita;
